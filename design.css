@@ -69,11 +69,11 @@ input{
 }
 
 .add-button{
-
     width: 150px;
     margin: 18px auto;
 }
 .addB{
+    color: white;
     width: 150px;
     height: 42px;
     background-color: #833AE0;
