@@ -60,7 +60,8 @@ input{
 }
 .text-block{
     margin-left: 7px;
-    margin-top: 0px;
+    margin-top: 0git px;
+    outline: none;
 }
 .x-button{
     margin-top: 5px;
