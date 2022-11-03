@@ -3,11 +3,9 @@
     <head>
         <title>To-Do</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="design.css">
-        <script src="functionality.js"></script>
     </head>
     <body>
-        <form>
+        <form onsubmit="return false">
             <div class="block">
                 <div class="yellow-block"></div>
                 <div class="body-block">
@@ -15,17 +13,26 @@
                         <p>To-Do List</p>
                     </div>
                     <div class="sort-button">
-                        <button><img src="photos\lowToHighGrey.svg"></button>
+                        <button type="button"><img src="photos\lowToHighGrey.svg" alt=""></button>
                     </div>
+                    <ul id="myUL">
+                    </ul>
                     <div class="input-block">
                         <input class="text-block" type="text" style="width: 215px; height: 30px">
-                        <button class="x-button"><img src="photos\buttonXgrey.svg"></button>
+                        <button class="x-button" type="button"><img src="photos\buttonXgrey.svg" alt=""></button>
                     </div>
                     <div class="add-button">
-                        <button class="addB">Добавить</button>
+                        <button class="addB" id="addBut" type="button">
+                            <div class="cycle">
+                                <div class="plus"><p>+</p></div>
+                            </div>
+                            <div class="addFont"><p>Добавить</p></div>
+                        </button>
                     </div>
                 </div>
             </div>
         </form>
     </body>
+    <script src="functionality.js"></script>
+    <link rel="stylesheet" href="design.css">
 </html>

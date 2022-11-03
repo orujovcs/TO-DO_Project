@@ -3,6 +3,10 @@ body{
     font-family: 'Roboto', sans-serif;
     margin-top: 32vh;
 }
+*{
+    margin: 0px;
+    padding: 0px;
+}
 button {     
     background-color: Transparent;
     background-repeat:no-repeat;
@@ -26,11 +30,10 @@ button {
 }
 .body-block{
     margin: 0px auto;
-    /* padding-bottom: 20px; */
 }
 .head-text{
     width: 150px;
-    margin: -10px auto;
+    margin: 13px auto;
     font-size: 30px;
     height: 30px;
 }
@@ -65,12 +68,31 @@ input{
 }
 .x-button{
     margin-top: 5px;
-    margin-left: 5px;
+    margin-left: 15px;
 }
 
 .add-button{
     width: 150px;
     margin: 18px auto;
+}
+.plus{
+    margin: -12px;
+    padding: 13px;
+    display: flex;
+    justify-content: center;
+}
+.cycle{
+    width: 42px;
+    height: 42px;
+    font-size: 15px;
+    background-color: #9953F1;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+}
+.addFont{
+    margin-top: -29px;
+    margin-left: 20px;
 }
 .addB{
     color: white;
