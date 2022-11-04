@@ -51,7 +51,7 @@ document.addEventListener('keyup', (event) => {
     if(event.key == "Enter" || event.key == 13){
         let newTask = document.createElement('div');
         newTask.classList.add('item');
-        newTask.innerHTML = `<div class="input"><input class="text-block" type="text"><button class="x-button" type="button"><img class="deletePic" src="photos\\buttonXgrey.svg" alt=""></button></div>`
+        newTask.innerHTML = `<div class="input"><input class="text-block" type="text" value="${addInfo.value}"><button class="x-button" type="button"><img class="deletePic" src="photos\\buttonXgrey.svg" alt=""></button></div>`
         tasks.appendChild(newTask);
         myNodeList.push(addInfo.value);
         addInfo.value = '';
