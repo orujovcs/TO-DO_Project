@@ -3,9 +3,9 @@ const addInfo = document.querySelector(".text-block");
 const sortButton = document.querySelector(".sort-button");
 const sortBtn = document.querySelector(".button");
 const deleteButton = document.querySelector(".x-button");
-const body = document.querySelector("body");
 const tasks = document.querySelector(".tasks");
-const item = document.querySelector(".item");
+const items = document.querySelectorAll(".item");
+const input = document.querySelector
 let myNodeList = [];
 
 sortBtn.addEventListener('mouseover',() => {
@@ -38,7 +38,7 @@ sortBtn.addEventListener('click', () => {
         myNodeList.forEach((item) => {
             let newTask = document.createElement('div');
             newTask.classList.add('item');
-            newTask.innerHTML = `<div class="p-textBlock" draggable="true"><p class="text-blockTask">${item}</p> <button class="x-button" type="button"><img class="deletePic" src="photos\\buttonXgrey.svg" alt=""></button></div>`
+            newTask.innerHTML = `<div class="p-textBlock"><p class="text-blockTask">${item}</p> <button class="x-button" type="button"><img class="deletePic" src="photos\\buttonXgrey.svg" alt=""></button></div>`
             tasks.appendChild(newTask);
         });
     }
@@ -50,7 +50,7 @@ sortBtn.addEventListener('click', () => {
         myNodeList.forEach((item) => {
             let newTask = document.createElement('div');
             newTask.classList.add('item');
-            newTask.innerHTML = `<div class="p-textBlock" draggable="true"><p class="text-blockTask">${item}</p> <button class="x-button" type="button"><img class="deletePic" src="photos\\buttonXgrey.svg" alt=""></button></div>`
+            newTask.innerHTML = `<div class="p-textBlock"><p class="text-blockTask" draggable="true">${item}</p> <button class="x-button" type="button"><img class="deletePic" src="photos\\buttonXgrey.svg" alt=""></button></div>`
             tasks.appendChild(newTask);
         });
     }
@@ -59,7 +59,7 @@ sortBtn.addEventListener('click', () => {
 addButton.addEventListener('click', () => {
     let newTask = document.createElement('div');
     newTask.classList.add('item');
-    newTask.innerHTML = `<div class="p-textBlock" draggable="true"><p class="text-blockTask">${addInfo.value}</p> <button class="x-button" type="button"><img class="deletePic" src="photos\\buttonXgrey.svg" alt=""></button></div>`
+    newTask.innerHTML = `<p class="text-blockTask">${addInfo.value}</p> <button class="x-button" type="button"><img class="deletePic" src="photos\\buttonXgrey.svg" alt=""></button>`
     tasks.appendChild(newTask);
     myNodeList.push(addInfo.value);
     addInfo.value = '';
@@ -69,7 +69,7 @@ document.addEventListener('keyup', (event) => {
     if(event.key == "Enter" || event.key == 13){
         let newTask = document.createElement('div');
         newTask.classList.add('item');
-        newTask.innerHTML = `<div class="input" draggable="true"><input class="text-block" type="text" value="${addInfo.value}"><button class="x-button" type="button"><img class="deletePic" src="photos\\buttonXgrey.svg" alt=""></button></div>`
+        newTask.innerHTML = `<input class="text-block" type="text" value="${addInfo.value}" draggable="true"><button class="x-button" type="button"><img class="deletePic" src="photos\\buttonXgrey.svg" alt=""></button>`
         tasks.appendChild(newTask);
         myNodeList.push(addInfo.value);
         addInfo.value = '';
@@ -79,14 +79,17 @@ document.addEventListener('keyup', (event) => {
 tasks.addEventListener('click', (event) => {
     if(event.target.classList.contains('x-button') || event.target.classList.contains('deletePic')){
         let deletedElement = event.target.parentElement.parentElement;
+        console.log(deletedElement);
         let ifInputDeletedElement;
         try {
             if(deletedElement.querySelector('.text-block').value){
                 ifInputDeletedElement = deletedElement.querySelector('.text-block').value;
+                console.log(ifInputDeletedElement);
             }
         } 
         catch (error) {}
         let deletedElementInnerText = deletedElement.firstChild.innerText;
+        console.log(deletedElementInnerText);
         myNodeList = myNodeList.filter ( (item)=>{     
             return item !== deletedElementInnerText;
         });
@@ -95,6 +98,12 @@ tasks.addEventListener('click', (event) => {
             return item !== ifInputDeletedElement;
         });
         }
-        deletedElement.parentElement.remove();
+        deletedElement.remove();
     }
+});
+const taskList = document.getElementById("tasks-list");
+const sortable = Sortable.create(taskList,{
+    animation: 200,
+    ghostClass: 'myghostclass',
+    dragClass: 'sortable-drag'
 });

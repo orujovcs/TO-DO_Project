@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap');
+	
+
 body{
     font-family: 'Roboto', sans-serif;
     margin-top: 32vh;
+    /* cursor: url('photos\\cursor.svg'), auto;	 */
 }
 *{
     margin: 0px;
@@ -43,17 +46,24 @@ body{
 }
 .p-textBlock{
     font-size: 14px;
-    margin-left: 20px;
     display: flex;
     align-items: center;
 }
 .text-blockTask{
+    margin-left: 20px;
     display: flex;
     align-items: center;
     height: 40px;
     outline: none;
     width: 215px;
     border-style: none;
+}
+.myghostclass{
+    background-color: #f5f6fa;
+    border-left: 6px solid #ffc312;
+}
+.sortable-drag{
+    opacity: 0.0;
 }
 button{   
     z-index: 1;  
@@ -71,6 +81,7 @@ button{
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
+    font-size: 14px;
     width: 276px;
     max-height: 220px;
     margin: 8px auto;
@@ -105,6 +116,7 @@ input{
     height: 40px;
     margin-left: 20px;
     margin-top: 0px;
+    font-size: 14px;
     outline: none;
     width: 215px;
     border-style: none;
