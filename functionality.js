@@ -27,8 +27,6 @@ sortBtn.addEventListener('mouseout',() => {
         image.src = `${urlAddress}photos/highToLowGrey.svg`;
     }
 });
-document.addEventListener('keyup', (event)=> {
-    if(event.key){window.scrollBy(0,110);}});
 sortBtn.addEventListener('click', () => {
     let myNodeList = [...items];
     var image = document.querySelector(".button");
