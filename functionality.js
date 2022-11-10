@@ -57,6 +57,7 @@ addButton.addEventListener('click', () => {
     newTask.classList.add('item');
     newTask.innerHTML = `<p class="text-blockTask">${addInfo.value}</p> <button class="x-button" type="button"><img class="deletePic" src="photos\\buttonXgrey.svg" alt=""></button>`
     tasks.appendChild(newTask);
+    window.scrollBy(0,110);
     myNodeList.push(addInfo.value);
     addInfo.value = '';
 });
@@ -66,6 +67,7 @@ document.addEventListener('keyup', (event) => {
         newTask.classList.add('item');
         newTask.innerHTML = `<input class="text-block" type="text" value="${addInfo.value}" draggable="true"><button class="x-button" type="button"><img class="deletePic" src="photos\\buttonXgrey.svg" alt=""></button>`
         tasks.appendChild(newTask);
+        window.scrollBy(0,110);
         myNodeList.push(addInfo.value);
         addInfo.value = '';
     }
