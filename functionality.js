@@ -4,97 +4,81 @@ const sortButton = document.querySelector(".sort-button");
 const sortBtn = document.querySelector(".button");
 const deleteButton = document.querySelector(".x-button");
 const tasks = document.querySelector(".tasks");
-const items = document.querySelectorAll(".item");
-const input = document.querySelector
-let myNodeList = [];
+const items = document.getElementsByClassName("item");
+const itemss = document.querySelectorAll(".item");
+const urlAddress = document.URL;
+addButton.addEventListener('click', createTask);
+createTask();
 sortBtn.addEventListener('mouseover',() => {
     var image = document.querySelector(".button");
-    if(image.src == `http://127.0.0.1:5501/photos/lowToHighGrey.svg`){
-        image.src = `http://127.0.0.1:5501/photos/lowToHighBlack.svg`;
+    if(image.src == `${urlAddress}photos/lowToHighGrey.svg`){
+        image.src = `${urlAddress}photos/lowToHighBlack.svg`;
     }
-    else if(image.src == `http://127.0.0.1:5501/photos/highToLowGrey.svg`){
-        image.src = `http://127.0.0.1:5501/photos/highToLowBlack.svg`;
+    else if(image.src == `${urlAddress}photos/highToLowGrey.svg`){
+        image.src = `${urlAddress}photos/highToLowBlack.svg`;
     }
 });
 sortBtn.addEventListener('mouseout',() => {
     var image = document.querySelector(".button");
-    if(image.src == `http://127.0.0.1:5501/photos/lowToHighBlack.svg`){
-        image.src = `http://127.0.0.1:5501/photos/lowToHighGrey.svg`;
+    if(image.src == `${urlAddress}photos/lowToHighBlack.svg`){
+        image.src = `${urlAddress}photos/lowToHighGrey.svg`;
     }
-    else if(image.src == `http://127.0.0.1:5501/photos/highToLowBlack.svg`){
-        image.src = `http://127.0.0.1:5501/photos/highToLowGrey.svg`;
+    else if(image.src == `${urlAddress}photos/highToLowBlack.svg`){
+        image.src = `${urlAddress}photos/highToLowGrey.svg`;
     }
 });
+document.addEventListener('keyup', (event)=> {
+    if(event.key){window.scrollBy(0,110);}});
 sortBtn.addEventListener('click', () => {
+    let myNodeList = [...items];
     var image = document.querySelector(".button");
-    if(image.src == `http://127.0.0.1:5501/photos/lowToHighBlack.svg`){
-        image.src = `http://127.0.0.1:5501/photos/highToLowBlack.svg`;
-        let task = document.querySelector(".tasks");
-        task.innerHTML = " ";
-        myNodeList.sort();
-        myNodeList.forEach((item) => {
-            let newTask = document.createElement('div');
-            newTask.classList.add('item');
-            newTask.innerHTML = `<div class="p-textBlock"><p class="text-blockTask">${item}</p> <button class="x-button" type="button"><img class="deletePic" src="photos\\buttonXgrey.svg" alt=""></button></div>`
-            tasks.appendChild(newTask);
+    if(image.src == `${urlAddress}photos/lowToHighBlack.svg`){
+        image.src = `${urlAddress}photos/highToLowBlack.svg`;             
+        myNodeList.sort((a,b) =>{
+            if(a.firstChild.value < b.firstChild.value)            
+                return -1;    
+            else if(a.firstChild.value > b.firstChild.value)
+                return 1;
+            return 0;
         });
+        tasks.replaceChildren(...myNodeList);
     }
-    else if(image.src == `http://127.0.0.1:5501/photos/highToLowBlack.svg`){
-        image.src = `http://127.0.0.1:5501/photos/lowToHighBlack.svg`;
-        let task = document.querySelector(".tasks");
-        task.innerHTML = " ";
-        myNodeList.reverse();
-        myNodeList.forEach((item) => {
-            let newTask = document.createElement('div');
-            newTask.classList.add('item');
-            newTask.innerHTML = `<div class="p-textBlock"><p class="text-blockTask" draggable="true">${item}</p> <button class="x-button" type="button"><img class="deletePic" src="photos\\buttonXgrey.svg" alt=""></button></div>`
-            tasks.appendChild(newTask);
+    else if(image.src == `${urlAddress}photos/highToLowBlack.svg`){
+        image.src = `${urlAddress}photos/lowToHighBlack.svg`;        
+        myNodeList.sort((a,b) =>{
+            if(a.firstChild.value > b.firstChild.value)            
+                return -1;      
+            else if(a.firstChild.value < b.firstChild.value)
+                return 1;
+            return 0;
         });
+        tasks.replaceChildren(...myNodeList);
     }
 });
-addButton.addEventListener('click', () => {
-    let newTask = document.createElement('div');
+function createTask(){
+    let newTask = document.createElement('div');    
     newTask.classList.add('item');
-    newTask.innerHTML = `<p class="text-blockTask">${addInfo.value}</p> <button class="x-button" type="button"><img class="deletePic" src="photos\\buttonXgrey.svg" alt=""></button>`
+    newTask.addEventListener('keyup', makeReadOnlyTask);     
+    newTask.innerHTML = `<input class="text-block" type="text" draggable="true" ><button class="x-button" type="button"><img class="deletePic" src="photos\\buttonXgrey.svg" alt=""></button>`
     tasks.appendChild(newTask);
-    window.scrollBy(0,110);
-    myNodeList.push(addInfo.value);
-    addInfo.value = '';
-});
-document.addEventListener('keyup', (event) => {
+    const tasksHeight = document.querySelector(".input-block");  
+    tasksHeight.scrollBy(0,110);
+}
+function makeReadOnlyTask(event){
     if(event.key == "Enter" || event.key == 13){
-        let newTask = document.createElement('div');
-        newTask.classList.add('item');
-        newTask.innerHTML = `<input class="text-block" type="text" value="${addInfo.value}" draggable="true"><button class="x-button" type="button"><img class="deletePic" src="photos\\buttonXgrey.svg" alt=""></button>`
-        tasks.appendChild(newTask);
-        window.scrollBy(0,110);
-        myNodeList.push(addInfo.value);
-        addInfo.value = '';
+        event.target.readOnly = true;
     }
-});
+}
 tasks.addEventListener('click', (event) => {
     if(event.target.classList.contains('x-button') || event.target.classList.contains('deletePic')){
-        let deletedElement = event.target.parentElement.parentElement;
-        console.log(deletedElement);
-        let ifInputDeletedElement;
-        try {
-            if(deletedElement.querySelector('.text-block').value){
-                ifInputDeletedElement = deletedElement.querySelector('.text-block').value;
-                console.log(ifInputDeletedElement);
-            }
-        } 
-        catch (error) {}
-        let deletedElementInnerText = deletedElement.firstChild.innerText;
-        console.log(deletedElementInnerText);
-        myNodeList = myNodeList.filter ( (item)=>{     
-            return item !== deletedElementInnerText;
-        });
-        if(ifInputDeletedElement != null){
-            myNodeList = myNodeList.filter ( (item)=>{     
-            return item !== ifInputDeletedElement;
-        });
+        let htmlCode = document.querySelector(".text-block");
+        if(items.length == 1){
+            htmlCode.value = ' ';
         }
-        deletedElement.remove();
+        else{
+            let deletedElement = event.target.parentElement.parentElement;                
+            deletedElement.remove();
+        }   
     }
 });
 const taskList = document.getElementById("tasks-list");
