@@ -9,6 +9,11 @@ body{
 *{
     margin: 0px;
     padding: 0px;
+    cursor: url('photos\\cursor.svg'), auto;
+}
+html{
+    cursor: pointer;
+    cursor: url('photos\\cursor.svg'), auto;	
 }
 .block{
     width: 330px;
@@ -65,7 +70,7 @@ body{
 .sortable-drag{
     opacity: 0.0;
 }
-button{   
+button{
     z-index: 1;  
     background-color: Transparent;
     background-repeat:no-repeat;
@@ -125,6 +130,7 @@ input{
     width: 30px;
     margin-top: 5px;
     margin-left: 0px;
+    cursor: url('photos\\cursor.svg'), auto;
 }
 .deletePic:hover{
     margin: 0px;
@@ -161,4 +167,5 @@ input{
     background-color: #833AE0;
     border-radius: 25px;
     border-style: none;
+    cursor: url('photos\\cursor.svg'), auto;;
 }
